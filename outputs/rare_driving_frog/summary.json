@@ -1,0 +1,55 @@
+{
+  "config": {
+    "experiment_name": "rare_driving_frog",
+    "model_id": "runwayml/stable-diffusion-v1-5",
+    "rare_prompt": "the driving frog",
+    "negative_prompt": "blurry, low quality, distorted, text, watermark",
+    "components": [
+      {
+        "name": "noun",
+        "terms": [
+          "frog",
+          "green frog",
+          "tree frog"
+        ]
+      },
+      {
+        "name": "modifier",
+        "terms": [
+          "driving a car",
+          "holding a steering wheel while driving",
+          "a driver inside a car"
+        ]
+      }
+    ],
+    "num_prompts_per_term": 24,
+    "num_candidates": 64,
+    "center_weight": 6.0,
+    "num_images_per_method": 4,
+    "seeds": [
+      13,
+      29,
+      47,
+      71
+    ],
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "height": 512,
+    "width": 512
+  },
+  "selected_candidate_index": 22,
+  "selected_candidate": {
+    "index": 22,
+    "weights": [
+      0.6029199957847595,
+      0.3970800042152405
+    ],
+    "density_score": -3469.907958984375,
+    "center_distance": 0.31336545944213867,
+    "total_score": -3471.7880859375
+  },
+  "mean_clip_score": {
+    "baseline": 29.47791337966919,
+    "linear_valid": 21.67525339126587
+  }
+}

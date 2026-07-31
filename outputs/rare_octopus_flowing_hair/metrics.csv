@@ -1,0 +1,9 @@
+method,seed,image,clip_score
+baseline,13,outputs/rare_octopus_flowing_hair/baseline/seed_13.png,32.94786071777344
+linear_valid,13,outputs/rare_octopus_flowing_hair/linear_valid/seed_13.png,26.57184600830078
+baseline,29,outputs/rare_octopus_flowing_hair/baseline/seed_29.png,32.465938568115234
+linear_valid,29,outputs/rare_octopus_flowing_hair/linear_valid/seed_29.png,26.589914321899414
+baseline,47,outputs/rare_octopus_flowing_hair/baseline/seed_47.png,31.4416561126709
+linear_valid,47,outputs/rare_octopus_flowing_hair/linear_valid/seed_47.png,26.262638092041016
+baseline,71,outputs/rare_octopus_flowing_hair/baseline/seed_71.png,32.34690856933594
+linear_valid,71,outputs/rare_octopus_flowing_hair/linear_valid/seed_71.png,28.075462341308594

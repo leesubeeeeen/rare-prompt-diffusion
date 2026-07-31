@@ -1,0 +1,55 @@
+{
+  "config": {
+    "experiment_name": "rare_octopus_flowing_hair",
+    "model_id": "runwayml/stable-diffusion-v1-5",
+    "rare_prompt": "an octopus with flowing hair",
+    "negative_prompt": "blurry, low quality, distorted, text, watermark",
+    "components": [
+      {
+        "name": "noun",
+        "terms": [
+          "octopus",
+          "giant octopus",
+          "underwater octopus"
+        ]
+      },
+      {
+        "name": "modifier",
+        "terms": [
+          "long flowing human hair",
+          "silky hair flowing in the wind",
+          "a head covered with flowing hair"
+        ]
+      }
+    ],
+    "num_prompts_per_term": 24,
+    "num_candidates": 64,
+    "center_weight": 6.0,
+    "num_images_per_method": 4,
+    "seeds": [
+      13,
+      29,
+      47,
+      71
+    ],
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "height": 512,
+    "width": 512
+  },
+  "selected_candidate_index": 18,
+  "selected_candidate": {
+    "index": 18,
+    "weights": [
+      0.552590012550354,
+      0.447409987449646
+    ],
+    "density_score": -4306.98095703125,
+    "center_distance": 0.22698482871055603,
+    "total_score": -4308.3427734375
+  },
+  "mean_clip_score": {
+    "baseline": 32.30059099197388,
+    "linear_valid": 26.87496519088745
+  }
+}

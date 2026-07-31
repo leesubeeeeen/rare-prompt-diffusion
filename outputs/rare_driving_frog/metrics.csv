@@ -1,0 +1,9 @@
+method,seed,image,clip_score
+baseline,13,outputs/rare_driving_frog/baseline/seed_13.png,32.86898422241211
+linear_valid,13,outputs/rare_driving_frog/linear_valid/seed_13.png,23.388809204101562
+baseline,29,outputs/rare_driving_frog/baseline/seed_29.png,32.77227783203125
+linear_valid,29,outputs/rare_driving_frog/linear_valid/seed_29.png,21.156301498413086
+baseline,47,outputs/rare_driving_frog/baseline/seed_47.png,25.568754196166992
+linear_valid,47,outputs/rare_driving_frog/linear_valid/seed_47.png,23.36125946044922
+baseline,71,outputs/rare_driving_frog/baseline/seed_71.png,26.701637268066406
+linear_valid,71,outputs/rare_driving_frog/linear_valid/seed_71.png,18.79464340209961

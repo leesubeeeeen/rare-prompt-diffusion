@@ -1,0 +1,19 @@
+{
+  "experiment_name": "rare_driving_frog",
+  "model_id": "runwayml/stable-diffusion-v1-5",
+  "rare_prompt": "the driving frog",
+  "negative_prompt": "blurry, low quality, distorted, text, watermark",
+  "components": [
+    {"name": "noun", "terms": ["frog", "green frog", "tree frog"]},
+    {"name": "modifier", "terms": ["driving a car", "holding a steering wheel while driving", "a driver inside a car"]}
+  ],
+  "num_prompts_per_term": 24,
+  "num_candidates": 64,
+  "center_weight": 6.0,
+  "num_images_per_method": 4,
+  "seeds": [13, 29, 47, 71],
+  "num_inference_steps": 30,
+  "guidance_scale": 7.5,
+  "height": 512,
+  "width": 512
+}
