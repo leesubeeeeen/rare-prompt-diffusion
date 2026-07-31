@@ -1,0 +1,21 @@
+{
+  "experiment_name": "bioluminescent_medieval_submarine_library",
+  "model_id": "runwayml/stable-diffusion-v1-5",
+  "rare_prompt": "a bioluminescent medieval submarine library, highly detailed, cinematic lighting",
+  "negative_prompt": "blurry, low quality, distorted, text, watermark",
+  "components": [
+    {"name": "subject", "terms": ["submarine", "underwater vessel", "deep sea submersible"]},
+    {"name": "era", "terms": ["medieval castle", "medieval manuscript", "medieval armor"]},
+    {"name": "attribute", "terms": ["bioluminescent jellyfish", "glowing deep sea coral", "bioluminescent fish"]},
+    {"name": "scene", "terms": ["grand library interior", "ancient library", "ornate reading room"]}
+  ],
+  "num_prompts_per_term": 24,
+  "num_candidates": 64,
+  "center_weight": 6.0,
+  "num_images_per_method": 4,
+  "seeds": [13, 29, 47, 71],
+  "num_inference_steps": 30,
+  "guidance_scale": 7.5,
+  "height": 512,
+  "width": 512
+}
