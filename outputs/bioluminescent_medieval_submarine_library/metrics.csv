@@ -1,0 +1,9 @@
+method,seed,image,clip_score
+baseline,13,outputs/bioluminescent_medieval_submarine_library/baseline/seed_13.png,26.941316604614258
+linear_valid,13,outputs/bioluminescent_medieval_submarine_library/linear_valid/seed_13.png,18.046030044555664
+baseline,29,outputs/bioluminescent_medieval_submarine_library/baseline/seed_29.png,32.814632415771484
+linear_valid,29,outputs/bioluminescent_medieval_submarine_library/linear_valid/seed_29.png,18.02635383605957
+baseline,47,outputs/bioluminescent_medieval_submarine_library/baseline/seed_47.png,32.11077880859375
+linear_valid,47,outputs/bioluminescent_medieval_submarine_library/linear_valid/seed_47.png,18.09288215637207
+baseline,71,outputs/bioluminescent_medieval_submarine_library/baseline/seed_71.png,26.29174041748047
+linear_valid,71,outputs/bioluminescent_medieval_submarine_library/linear_valid/seed_71.png,21.58718490600586
