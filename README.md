@@ -1,50 +1,38 @@
-# Rare Prompt Robustness: Linear Valid-Distribution Baseline
+# Rare Prompt Robustness for Text-to-Image Diffusion
 
-희귀한 조합 프롬프트를 구성요소로 분해하고, 각 구성요소의 CLIP text-conditioning 분포를 추정한 뒤 선형 보간 경로의 중심 부근에서 높은 밀도를 갖는 conditioning을 선택해 이미지를 생성하는 실험입니다.
+서로 어울리지 않는 수식어와 명사의 희귀 조합(예: `the driving frog`, `an octopus with flowing hair`)을 text-to-image diffusion model이 정확하게 표현하도록 만드는 방법을 연구하는 저장소입니다.
 
-## 구현한 가설
+## 저장소 구조
 
-`rare prompt`의 원본 conditioning과, 구성요소 분포의 peak를 선형 결합한 conditioning을 비교합니다. 선형 중심점 `m` 주위의 후보 `z` 중 아래 점수가 높은 후보를 선택합니다.
+```text
+methods/
+  linear_distribution/   # 종료된 선형 분포 보간 방법
+  relation_binding/      # 다음 방법을 위한 작업 공간
+configs/
+  linear_distribution/   # 종료된 방법의 재현 설정
+experiments/
+  failed_attempts/       # 실패 실험의 이미지, 지표, 후보 기록
+  current/               # 다음 실험의 산출물 위치
+docs/
+  experiment_log.md      # 가설, 결과, 실패 원인 기록
+```
 
-`score(z) = log p_A(z) + log p_B(z) + ... - center_penalty * ||z - m||²`
+## 현재 상태
 
-각 `p_i`는 해당 구성요소의 프롬프트 embedding에 적합한 shrinkage Gaussian입니다. 후보는 임의의 embedding noise가 아니라, 각 구성요소의 실제 프롬프트 embedding 선형 결합으로 만들므로 conditioning 형태를 유지합니다.
+`linear_distribution` 방법은 종료된 baseline입니다. 구성요소별 prompt embedding 분포를 추정하고 그 중심 부근의 conditioning을 선택했지만, 명사와 수식어 사이의 관계를 보존하지 못해 두 rare prompt 모두 원본 prompt baseline보다 낮은 CLIP alignment를 기록했습니다.
 
-## 빠른 실행
+새로운 방법은 아직 정하지 않았습니다. 다음 실험을 기획한 뒤 `methods/<method_name>/`, `configs/<method_name>/`, `experiments/current/` 아래에 구현과 설정, 결과를 추가합니다.
 
-GPU Linux 세션에서 다음을 실행합니다.
+## 실패 baseline 재현
 
 ```bash
-git clone <YOUR_REPOSITORY_URL> rare-prompt-linear
-cd rare-prompt-linear
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python scripts/run_experiment.py --config configs/example_bioluminescent_submarine.json
+
+python methods/linear_distribution/run_experiment.py \
+  --config configs/linear_distribution/rare_driving_frog.json \
+  --output-dir experiments/failed_attempts/linear_distribution
 ```
 
-결과는 `outputs/<experiment_name>/`에 저장됩니다.
-
-## GPU 사이트에서의 순서
-
-1. **스토리지 폴더**를 만들고 이 프로젝트를 GitHub에 push한 뒤 URL로 가져오거나, 폴더 전체를 업로드합니다. 결과와 Hugging Face cache를 스토리지에 두면 세션 삭제 후에도 남습니다.
-2. **Interactive 세션**을 먼저 만듭니다. Ubuntu + PyTorch/CUDA 이미지를 고르고 GPU 1장, VRAM 16GB 이상이면 권장합니다. 8GB도 SD 1.5, 512px, batch 1로 가능합니다.
-3. 터미널에서 위 빠른 실행 명령을 수행합니다. 처음 실행 시 모델 다운로드가 발생합니다.
-4. 결과가 확인된 뒤, 같은 명령을 Batch 세션의 command로 옮겨 여러 config를 실행합니다.
-
-Hugging Face 모델 접근 승인이 필요한 경우 `huggingface-cli login`으로 본인 토큰을 로그인하세요. 토큰을 코드나 Git에 저장하지 마세요.
-
-## 실험 산출물
-
-- `baseline/`: 원본 rare prompt 이미지
-- `linear_valid/`: 선택된 선형-valid conditioning 이미지
-- `candidates.json`: 후보 가중치·분포 점수·선택 결과
-- `metrics.csv`: CLIP text-image alignment
-- `summary.json`: 선택 후보 및 요약
-
-## 다음 실험
-
-- `configs/`에 rare prompt별 JSON을 추가합니다.
-- seed 수를 4 이상으로 늘립니다.
-- `linear_valid`와 baseline의 CLIPScore, 사람 평가(구성요소 충실도/자연스러움)를 비교합니다.
-- 선형 보간과 SLERP 또는 원본 prompt embedding을 별도 ablation으로 비교합니다.
+실패 baseline의 상세 결과와 해석은 [`docs/experiment_log.md`](docs/experiment_log.md)에 기록되어 있습니다.
