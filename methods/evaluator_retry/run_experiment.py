@@ -80,6 +80,11 @@ def main():
     if args.device == "cpu":
         raise RuntimeError("A CUDA GPU is required for this Stable Diffusion experiment.")
     root = args.output_dir / config["experiment_name"]
+    if root.exists() and any(root.iterdir()):
+        raise FileExistsError(
+            f"Refusing to overwrite existing experiment output: {root}. "
+            "Use a new experiment_name or --output-dir."
+        )
     attempts_dir, selected_dir = root / "attempts", root / "selected"
     attempts_dir.mkdir(parents=True, exist_ok=True)
     selected_dir.mkdir(parents=True, exist_ok=True)
@@ -122,9 +127,15 @@ def main():
     pd.DataFrame(rows).to_csv(root / "attempt_metrics.csv", index=False)
     pd.DataFrame(selections).to_csv(root / "selected_metrics.csv", index=False)
     selected_scores = [item["total_score"] for item in selections]
+    baseline_rows = [item for item in rows if item["attempt"] == 1]
+    baseline_scores = [item["total_score"] for item in baseline_rows]
+    accepted_outputs = int(sum(item["accepted"] for item in selections))
     summary = {"config": config, "num_outputs": len(selections), "mean_selected_score": float(np.mean(selected_scores)),
-               "accepted_outputs": int(sum(item["accepted"] for item in selections)),
-               "mean_attempts_used": float(np.mean([item["attempts_used"] for item in selections]))}
+               "mean_baseline_score": float(np.mean(baseline_scores)),
+               "mean_score_delta_vs_baseline": float(np.mean(np.asarray(selected_scores) - np.asarray(baseline_scores))),
+               "accepted_outputs": accepted_outputs, "acceptance_rate": accepted_outputs / len(selections),
+               "mean_attempts_used": float(np.mean([item["attempts_used"] for item in selections])),
+               "mean_retries": float(np.mean([item["attempts_used"] - 1 for item in selections]))}
     (root / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 

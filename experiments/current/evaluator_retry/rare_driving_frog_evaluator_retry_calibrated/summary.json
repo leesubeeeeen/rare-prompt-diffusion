@@ -1,0 +1,54 @@
+{
+  "config": {
+    "experiment_name": "rare_driving_frog_evaluator_retry_calibrated",
+    "model_id": "runwayml/stable-diffusion-v1-5",
+    "evaluator_model_id": "openai/clip-vit-base-patch32",
+    "rare_prompt": "a green frog driving a car, holding the steering wheel, cinematic photograph",
+    "negative_prompt": "blurry, low quality, distorted, deformed, text, watermark",
+    "requirements": [
+      {
+        "name": "frog_subject",
+        "text": "a clearly visible green frog",
+        "emphasis": "a green frog is the main subject",
+        "weight": 1.0,
+        "minimum_score": 0.64
+      },
+      {
+        "name": "driving_relation",
+        "text": "a frog inside a car actively holding a steering wheel and driving",
+        "emphasis": "the frog is inside a car, holding the steering wheel and actively driving",
+        "weight": 1.4,
+        "minimum_score": 0.68
+      }
+    ],
+    "scoring_weights": {
+      "alignment": 0.35,
+      "requirements": 0.5,
+      "usability": 0.15
+    },
+    "requirement_minimum_score": 0.64,
+    "acceptance_threshold": 0.68,
+    "retry_suffix": "accurate subject-attribute-relation binding, coherent anatomy, high detail",
+    "max_attempts": 4,
+    "retry_seed_stride": 1009,
+    "num_images": 4,
+    "seeds": [
+      13,
+      29,
+      47,
+      71
+    ],
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "height": 512,
+    "width": 512
+  },
+  "num_outputs": 4,
+  "mean_selected_score": 0.6869145399487266,
+  "mean_baseline_score": 0.6798196643901369,
+  "mean_score_delta_vs_baseline": 0.007094875558589925,
+  "accepted_outputs": 4,
+  "acceptance_rate": 1.0,
+  "mean_attempts_used": 2.25,
+  "mean_retries": 1.25
+}

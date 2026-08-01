@@ -1,0 +1,17 @@
+experiment,base_seed,stage,subject_satisfied,binding_satisfied,overall_satisfied,notes
+rare_driving_frog_evaluator_retry_calibrated,13,baseline,true,false,false,frog visible; human hand near wheel; frog not clearly driving
+rare_driving_frog_evaluator_retry_calibrated,13,selected,true,false,false,frog touches or stands by wheel but driving action is unclear
+rare_driving_frog_evaluator_retry_calibrated,29,baseline,true,false,false,frog is inside car but not holding wheel
+rare_driving_frog_evaluator_retry_calibrated,29,selected,true,false,false,frog sits below dashboard and does not hold wheel
+rare_driving_frog_evaluator_retry_calibrated,47,baseline,true,false,false,hybrid composition with human arm; frog relation is malformed
+rare_driving_frog_evaluator_retry_calibrated,47,selected,true,false,false,frog is on the steering wheel rather than driving
+rare_driving_frog_evaluator_retry_calibrated,71,baseline,true,false,false,frog is in car but active steering is not shown
+rare_driving_frog_evaluator_retry_calibrated,71,selected,true,false,false,same as baseline because attempt 1 was selected
+rare_octopus_flowing_hair_evaluator_retry,17,baseline,false,false,false,human-octopus hybrid rather than octopus with attached hair
+rare_octopus_flowing_hair_evaluator_retry,17,selected,true,false,false,octopus visible but no flowing human-like hair
+rare_octopus_flowing_hair_evaluator_retry,31,baseline,false,false,false,human with tentacles rather than octopus
+rare_octopus_flowing_hair_evaluator_retry,31,selected,false,false,false,woman with hair and tentacles rather than octopus with hair
+rare_octopus_flowing_hair_evaluator_retry,53,baseline,false,false,false,human-octopus hybrid
+rare_octopus_flowing_hair_evaluator_retry,53,selected,true,false,false,octopus visible but no hair
+rare_octopus_flowing_hair_evaluator_retry,79,baseline,false,false,false,human with tentacle-like hair
+rare_octopus_flowing_hair_evaluator_retry,79,selected,false,false,false,ambiguous tentacle mass without clear octopus head or hair

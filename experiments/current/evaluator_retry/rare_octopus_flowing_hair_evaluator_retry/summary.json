@@ -1,0 +1,54 @@
+{
+  "config": {
+    "experiment_name": "rare_octopus_flowing_hair_evaluator_retry",
+    "model_id": "runwayml/stable-diffusion-v1-5",
+    "evaluator_model_id": "openai/clip-vit-base-patch32",
+    "rare_prompt": "an octopus with long flowing human-like hair, underwater, cinematic photograph",
+    "negative_prompt": "blurry, low quality, distorted, deformed, text, watermark",
+    "requirements": [
+      {
+        "name": "octopus_subject",
+        "text": "a clearly visible octopus underwater",
+        "emphasis": "an octopus is the main subject, with eight visible tentacles",
+        "weight": 1.0,
+        "minimum_score": 0.64
+      },
+      {
+        "name": "flowing_hair_attribute",
+        "text": "an octopus with long flowing human-like hair attached to its head",
+        "emphasis": "long human-like hair clearly grows from the octopus head and flows in the water",
+        "weight": 1.4,
+        "minimum_score": 0.68
+      }
+    ],
+    "scoring_weights": {
+      "alignment": 0.35,
+      "requirements": 0.5,
+      "usability": 0.15
+    },
+    "requirement_minimum_score": 0.64,
+    "acceptance_threshold": 0.68,
+    "retry_suffix": "accurate subject-attribute binding, coherent anatomy, high detail",
+    "max_attempts": 4,
+    "retry_seed_stride": 1009,
+    "num_images": 4,
+    "seeds": [
+      17,
+      31,
+      53,
+      79
+    ],
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "height": 512,
+    "width": 512
+  },
+  "num_outputs": 4,
+  "mean_selected_score": 0.6710807699648043,
+  "mean_baseline_score": 0.66249319958811,
+  "mean_score_delta_vs_baseline": 0.00858757037669422,
+  "accepted_outputs": 0,
+  "acceptance_rate": 0.0,
+  "mean_attempts_used": 4.0,
+  "mean_retries": 3.0
+}
